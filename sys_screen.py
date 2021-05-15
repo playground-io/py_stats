@@ -124,6 +124,8 @@ def main(args):
     screen_clear()
     mqtt_client.disconnect()
     mqtt_client.loop_stop()
+    for task in asyncio.Task.all_tasks():
+      task.cancel()
     loop.stop()
     loop.close()
 
