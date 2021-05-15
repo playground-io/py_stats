@@ -1,10 +1,14 @@
 #!/home/pi/.env/bin/python
 
-import argparse, sys, os, time, logging, curses, json
+#Show in PI TFT 3.5 inches touchscreen,
+#the Status of all PI's in the cluster and the UPS
+#the environment variables are collected through mqtt (mosquitto)
+
+import argparse, os, logging, json
 import paho.mqtt.client as mqtt
 from queue import Queue
-import asyncio, os
-from evdev import InputDevice, categorize, ecodes
+import asyncio
+from evdev import InputDevice, ecodes
 
 class setCursor:
   def __init__(self):
@@ -140,8 +144,8 @@ if __name__ == '__main__':
   )
   # Add the arguments to the parser
   ap.add_argument('-b', '--broker', required=True, help='mqtt broker')
-  ap.add_argument('-p', '--polling', default='20', type=int, required=False, help='interval to screen in sec')
-  ap.add_argument('-l', '--blight', default='30', type=int, required=False, help='backlight "ON" in sec')
+  ap.add_argument('-p', '--polling', default='10', type=int, required=False, help='interval to screen in sec')
+  ap.add_argument('-l', '--blight', default='60', type=int, required=False, help='backlight "ON" in sec')
   ap.add_argument('-v', '--version', action='version', version='%(prog)s 1.0', help='show version')
   args = vars(ap.parse_args())
   main(args)
