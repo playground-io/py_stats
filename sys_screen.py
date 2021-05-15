@@ -121,6 +121,7 @@ def main(args):
 
   finally:
     cursor.on()
+    screen_clear()
     mqtt_client.disconnect()
     mqtt_client.loop_stop()
     loop.stop()
