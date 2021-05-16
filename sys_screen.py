@@ -62,7 +62,6 @@ def on_message(client, userdata, message):
 async def show_stats(polling):
   host_stats = {}
   ups_stats = {}
-
   while True:
     while not q.empty():
       message = q.get()
